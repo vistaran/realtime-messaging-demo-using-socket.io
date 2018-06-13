@@ -1,0 +1,5 @@
+#!/bin/sh
+/sbin/pidof /home/vistaran/webapps/realtime_messaging/bin/node > /dev/null 2>&1 && exit 0
+mkdir -p /home/vistaran/webapps/realtime_messaging/run
+nohup /home/vistaran/webapps/realtime_messaging/bin/node /home/vistaran/webapps/realtime_messaging/hello-world.js > /dev/null 2>&1 &
+/sbin/pidof /home/vistaran/webapps/realtime_messaging/bin/node > /home/vistaran/webapps/realtime_messaging/run/node.pid
