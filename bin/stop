@@ -1,2 +1,6 @@
 #!/bin/sh
+<<<<<<< HEAD
 /usr/bin/pkill -f /home/vistaran/webapps/realtime_messaging/bin/node && rm -f /home/vistaran/webapps/realtime_messaging/run/node.pid
+=======
+/usr/bin/pkill -f /home/shreejibawa/webapps/realtime_messaging/bin/node && rm -f /home/shreejibawa/webapps/realtime_messaging/run/node.pid
+>>>>>>> bdd33491770d88345116ea1012f58e16631dda81

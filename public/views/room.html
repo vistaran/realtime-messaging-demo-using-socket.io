@@ -1,0 +1,86 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-9" ng-show="isUserAdded">
+            <div class="page-header">
+                <h2>Room : {{roomName}}</h2>
+            </div>
+            <!-- Chat box -->
+            <div class="row">
+                <div class="col-md-12">
+                    <form name="chatForm" ng-submit="send()">
+                        <div class="form-group col-md-8">
+                            <input type="text" class="form-control" ng-model="data.message" placeholder="Type your message here..." ng-keyup="onKeyUp()">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <a class="btn btn-default" ngf-select="upload($file, 'image')" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-multiple="false" ngf-validate-force="true" name='file'>
+                                <abbr title="Image files"><i class="fa fa-camera" aria-hidden="true"></i></abbr>
+                            </a>&nbsp;
+                            <a class="btn btn-default" ngf-select="upload($file, 'audio')" ngf-pattern="'audio/*'" ngf-accept="'audio/*'" ngf-multiple="false" ngf-validate-force="true" name='file'>
+                                <abbr title="Audio files"><i class="fa fa-file-audio-o" aria-hidden="true"></i></abbr>
+                            </a>
+                            <a class="btn btn-default" ngf-select="upload($file, 'video')" ngf-pattern="'video/*'" ngf-accept="'video/*'" ngf-multiple="false" ngf-validate-force="true" name='file'>
+                                <abbr title="Video files"><i class="fa fa-video-camera" aria-hidden="true"></i></abbr>
+                            </a>
+                            <button class="btn btn-success"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row messagesBox">
+                <div class="col-md-7 col-sm-7 col-xs-7" ng-if="rc.usersTyping.length > 0">
+                    {{rc.whoIsTyping}} {{rc.usersTyping.length > 1 ? 'are' : 'is'}} typing...
+                </div>
+                <div class="col-md-7 col-sm-7 col-xs-7" ng-repeat="m in messages" ng-class="{'pull-right': m.sent, 'pull-left': !m.sent}">
+                    <div class="alert" ng-class="{'alert-info': m.sent, 'alert-warning': !m.sent}">
+                        <h4>{{m.user}}</h4>
+                            <span ng-if="m.type === 'text'">{{m.text}}</span>
+                            <span ng-if="m.type === 'image'"><img ng-src="{{m.text}}" width="100%"></span>
+                            <span ng-if="m.type === 'audio'">
+                                <audio controls>
+                                    <source ng-src="{{m.text}}">
+                                        Your browser does not support the audio tag.
+                                </audio>
+                            </span>
+                            <span ng-if="m.type === 'video'">
+                                <video controls>
+                                    <source ng-src="{{m.text}}">
+                                        Your browser does not support the video tag.
+                                </video>
+                            </span>
+                    </div>
+                </div>
+            </div>
+            <!--<h2>Type here to broadcast:</h2>
+                <p></p>
+                <div text-angular ng-model="htmlVariable" ng-change="change(htmlVariable)"></div>
+                <hr>
+                <p><strong>Output: </strong></p>
+                <div ng-bind-html="htmlVariable"></div>-->
+        </div>
+        <div class="col-md-3 side-bar">
+            <h1>{{userName}}</h1>
+            <form method="POST" role="form" ng-submit="addMe()" ng-hide="isUserAdded">
+                <!-- <legend>Current Users</legend> -->
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" ng-model="formData.userName">
+                </div>
+                <div class="form-group">
+                    <label for="name">Email</label>
+                    <input type="text" class="form-control" id="email" ng-model="formData.email">
+                </div>
+                <div class="form-group">
+                    <label for="name">&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <button class="form-control btn btn-success">Save</button>
+                </div>
+            </form>
+            <h4>Online Users</h4>
+            <hr>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="user in allUsers">
+                    <i class="fa fa-circle green" ng-class="{'red': discIdx == $index, 'blue': userName === user.name}"> </i> &nbsp; {{user.name}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
