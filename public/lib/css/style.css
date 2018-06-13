@@ -1,0 +1,26 @@
+a {
+    color: #00B7FF;
+}
+
+.green {
+    color: green;
+}
+
+.blue {
+    color: blue;
+}
+
+.red {
+    color: #f0ad4e !important;
+}
+
+.side-bar {
+    border-left: 1px soild #d4d4d4;
+    position: fixed;
+    height: 100%;
+}
+
+.messagesBox {
+    overflow-y: auto;
+    height: 80vh
+}
